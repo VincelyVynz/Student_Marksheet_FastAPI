@@ -8,7 +8,7 @@ from schemas import Student as StudentSchema
 
 router = APIRouter(
     prefix = "/students", # All routes in this file will start with /students
-    tags = ["students"]   # For automatic grouping in the Swagger docs
+    tags = ["Students"]   # For automatic grouping in the Swagger docs
 )
 
 
