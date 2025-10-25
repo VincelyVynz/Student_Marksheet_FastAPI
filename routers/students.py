@@ -34,3 +34,41 @@ def get_student(student_id: int, db: Session = Depends(get_db)):
     if not student:
         raise HTTPException(status_code=404, detail="Student not found")
     return student
+
+# Update a student
+
+@router.put("/{student_id}", response_model = StudentSchema)
+def update_student(student_id: int, updated_student: StudentCreate, db: Session = Depends(get_db)):
+    student = db.query(Student).filter(Student.id == student_id).first()
+    if not student:
+        raise HTTPException(status_code=404, detail="Student not found")
+    student.name = updated_student.name
+    student.subject = updated_student.subject
+    student.marks = updated_student.marks
+    db.commit()
+    db.refresh(student)
+    return student
+
+# Delete a student
+
+@router.delete("/{student_id}")
+def delete_student(student_id: int, db: Session = Depends(get_db))
+    student = db.query(Student).filter(Student.id == student_id).first()
+    if not student:
+        raise HTTPException(status_code=404, detail="Student not found")
+    db.delete(student)
+    db.commit()
+    return {"message": "Student deleted successfully"}
+
+
+
+
+
+
+
+
+
+
+
+
+
