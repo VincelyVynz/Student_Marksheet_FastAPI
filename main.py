@@ -8,7 +8,7 @@ app = FastAPI(title= "Student Marksheet API")
 Base.metadata.create_all(bind = engine)
 
 # include router
-app.include_router(students_router, prefix="/students", tags=["Students"])
+app.include_router(students_router)
 
 # Root
 @app.get("/")
